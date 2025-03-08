@@ -1,0 +1,10 @@
+---
+- name: Create User
+  hosts: all
+  gather_facts: false
+
+  tasks:
+    - name: Create User
+      ansible.builtin.user:
+        name: service_runner
+        password: "{{ user_password | password_hash('sha512', 'mysecretsalt') }}"

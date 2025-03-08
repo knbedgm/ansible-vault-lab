@@ -1,0 +1,16 @@
+---
+- name: Configure Service
+  hosts: all
+  gather_facts: false
+
+  tasks:
+    - name: Create API Config
+      ansible.builtin.copy:
+        dest: ~/service/api.conf
+        content: "API_KEY={{ api_key }}\n"
+    - name: Create DB Config
+      ansible.builtin.copy:
+        dest: ~/service/db.conf
+        content: |
+          DB_USER={{ db_credentials.username }}
+          DB_PASS={{ db_credentials.password }}
